@@ -45,6 +45,7 @@ const Testimonials = () => {
                                 {reviews.name}
                             </h3>
                         </div>
+                        
                     </SwiperSlide>)
                 }
             </Swiper>
