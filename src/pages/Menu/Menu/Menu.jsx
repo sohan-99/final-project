@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet";
 import MenuCover from "../../Share/MenuCover";
-import menuimg from '../../../assets/menu/menu-bg.png'
 import desserstimg from '../../../assets/menu/pizza-bg.jpg'
 import useMenu from "../../../hooks/useMenu";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
@@ -42,8 +41,8 @@ const Menu = () => {
                 img={desserstimg}
             ></MenuCategory>
              <MenuCategory
-                items={soup}
-                title="soup"
+                items={salad}
+                title="salad"
                 img={desserstimg}
             ></MenuCategory>
         </div>
