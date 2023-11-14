@@ -5,9 +5,14 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import useMenu from '../../../hooks/useMenu';
 
+import OrderTabs from '../OrderTabs/OrderTabs';
+import { useParams } from 'react-router-dom';
+
 const Order = () => {
     const [tabIndex, setTabIndex] = useState(0);
     const [menu] = useMenu();
+    const {category} = useParams();
+    console.log(category);
     const desserts = menu.filter(item => item.category === 'dessert');
     const salad = menu.filter(item => item.category === 'salad');
     const soup = menu.filter(item => item.category === 'soup');
@@ -25,11 +30,21 @@ const Order = () => {
                     <Tab>Dessert</Tab>
                     <Tab>Drinks</Tab>
                 </TabList>
-                <TabPanel></TabPanel>
-                <TabPanel></TabPanel>
-                <TabPanel></TabPanel>
-                <TabPanel></TabPanel>
-                <TabPanel></TabPanel>
+                <TabPanel>
+                  <OrderTabs items={salad}></OrderTabs>
+                </TabPanel>
+                <TabPanel>
+                <OrderTabs items={pizza}></OrderTabs>
+                </TabPanel>
+                <TabPanel>
+                <OrderTabs items={soup}></OrderTabs>
+                </TabPanel>
+                <TabPanel>
+                <OrderTabs items={desserts}></OrderTabs>
+                </TabPanel>
+                <TabPanel>
+                <OrderTabs items={offered}></OrderTabs>
+                </TabPanel>
             </Tabs>
         </div>
     );

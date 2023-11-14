@@ -3,7 +3,6 @@
 import { Parallax } from 'react-parallax';
 import imgae from '../../assets/menu/menu-bg.png'
 const MenuCover = ({img, title}) => {
-    console.log(img);
     return (
         <Parallax
         blur={{ min: -50, max: 50 }}
