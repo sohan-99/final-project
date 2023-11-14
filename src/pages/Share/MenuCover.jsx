@@ -3,6 +3,7 @@
 import { Parallax } from 'react-parallax';
 import imgae from '../../assets/menu/menu-bg.png'
 const MenuCover = ({img, title}) => {
+    console.log(img);
     return (
         <Parallax
         blur={{ min: -50, max: 50 }}
@@ -11,8 +12,8 @@ const MenuCover = ({img, title}) => {
         strength={-200}
     >
        <div className="hero h-[700px]" 
-        // style={{ backgroundImage: `url("{img}")` }}
-        style={{backgroundImage: 'url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg)'}}
+        style={{ backgroundImage: `url(${img})` }}
+        // style={{backgroundImage: 'url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg)'}}
         >
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-center text-neutral-content">
