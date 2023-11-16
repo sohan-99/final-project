@@ -12,6 +12,7 @@ import Menu from './pages/Menu/Menu/Menu';
 import {HelmetProvider } from 'react-helmet-async';
 import Order from './pages/Order/Order/Order';
 import Login from './pages/Login/Login';
+import AuthProvider from './Provider/AuthProvider';
 
 const router = createBrowserRouter([
   {
@@ -40,10 +41,12 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <AuthProvider>
     <HelmetProvider>
     <div className='max-w-screen-xl mx-auto'>
      <RouterProvider router={router} />
     </div>
     </HelmetProvider>
+    </AuthProvider>
   </React.StrictMode>,
 )

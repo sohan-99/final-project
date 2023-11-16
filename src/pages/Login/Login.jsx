@@ -5,9 +5,10 @@ import { loadCaptchaEnginge, LoadCanvasTemplateNoReload, validateCaptcha } from 
 const Login = () => {
     const capthaRef = useRef(null);
     const [disable, setDisable] = useState(true)
+    const [recatha ,setx] =useState(true);
     useEffect(() => {
         loadCaptchaEnginge(6);
-    }, [])
+    }, [recatha])
     const handleLogin = event => {
         event.preventDefault();
         const form = event.target;
@@ -61,6 +62,7 @@ const Login = () => {
                             <input type="text" ref={capthaRef} placeholder="rechaptca"
                                 name="password"
                                 className="input input-bordered" required />
+                                <button onClick={()=>setx(!recatha)} className='' type='button'>reChapta</button>
                             <button onClick={handleValidateCaptcha} className="btn btn-outline btn-xs mt-2">Validate</button>
 
                         </div>
