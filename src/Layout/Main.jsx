@@ -6,7 +6,7 @@ import Navber from "../pages/Share/Navber";
 const Main = () => {
     const location = useLocation();
     // console.log(location);
-    const nohederAndFooter = location.pathname.includes('login')
+    const nohederAndFooter = location.pathname.includes('login') || location.pathname.includes('signup')
     return (
         <div>
            {nohederAndFooter ||  <Navber></Navber>}

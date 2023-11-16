@@ -1,8 +1,19 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
+import { AuthContext } from '../../Provider/AuthProvider';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
+
+    const { signIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
+
     const capthaRef = useRef(null);
     const [disable, setDisable] = useState(true)
     const [recatha ,setx] =useState(true);
@@ -14,7 +25,18 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        // console.log(email, password)
+        console.log(email, password);
+        signIn(email, password)
+        .then(result => {
+            // console.log(result.user);
+            toast.success('Successfully Login!')
+
+            navigate(from, { replace: true });
+        })
+        .catch(error => {
+            // console.log(error);
+            toast.error(error.message);
+        })
     }
 
     const handleValidateCaptcha = () => {
@@ -71,8 +93,16 @@ const Login = () => {
                             <input disabled={disable} className="btn btn-primary" type="submit" value="Login" />
                         </div>
                     </form>
+                    <p className="text-center mt-4 text-black text-base font-medium">
+                        New Here!!!
+                        {" "}
+                        <Link className="text-blue-600 font-semibold text-lg" to="/signup">
+                            Create An Account
+                        </Link>
+                    </p>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 };
