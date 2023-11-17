@@ -1,41 +1,47 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import { createContext, useEffect, useState } from "react";
-import app from "../firebase/firebase.config";
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut} from "firebase/auth"
+import {  createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import app from './../firebase/firebase.config';
 
-const auth = getAuth(app);
 
 export const AuthContext = createContext(null);
+
+const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
     const createUser = (email, password) => {
-        setLoading(true)
-        return createUserWithEmailAndPassword(auth, email, password);
+        setLoading(true);
+        return createUserWithEmailAndPassword(auth, email, password)
     }
 
     const signIn = (email, password) => {
-        setLoading(true)
-        return signInWithEmailAndPassword(auth, email, password)
+        console.log(email,password);
+        setLoading(true);
+        return signInWithEmailAndPassword(auth, email, password);
     }
 
-
     const logOut = () => {
-        setLoading(true)
+        setLoading(true);
         return signOut(auth);
     }
 
+    const updateUserProfile = (name, photo) => {
+        return updateProfile(auth.currentUser, {
+            displayName: name, photoURL: photo
+        });
+    }
+
     useEffect(() => {
-        const unSubscribe = onAuthStateChanged(auth, currentUser => {
-            // console.log(currentUser);
+        const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
-            setLoading(false)
+            console.log('current user', currentUser);
+            setLoading(false);
         });
         return () => {
-            unSubscribe();
+            return unsubscribe();
         }
     }, [])
 
@@ -45,14 +51,13 @@ const AuthProvider = ({ children }) => {
         createUser,
         signIn,
         logOut,
-        // updateUserProfile,
-        // handleSignInGooglePopUp,
-    
+        updateUserProfile
     }
+
     return (
         <AuthContext.Provider value={authInfo}>
-        {children}
-    </AuthContext.Provider>
+            {children}
+        </AuthContext.Provider>
     );
 };
 
