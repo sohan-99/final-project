@@ -1,16 +1,13 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react-hooks/rules-of-hooks */
 import { useContext } from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
+import { AuthContext } from '../../Provider/AuthProvider'
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import { AuthContext } from "../../Provider/AuthProvider";
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2'
 
 const SignUp = () => {
-    const { register,reset, handleSubmit,formState: { errors } } = useForm();
 
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -38,20 +35,19 @@ const SignUp = () => {
             })
     };
 
-
     return (
-        <div className="my-6">
+        <>
             <Helmet>
-
-                <title>SignUp page</title>
+                <title>Bistro Boss | Sign Up</title>
             </Helmet>
-            <div className="mt-14 mb-9 flex flex-col items-center justify-center">
-                <div className="bg-stone-300 lg:max-w-lg w-[80%] md:w-[75%] lg:w-[85%]  p-8 rounded-lg shadow-lg">
-                    <h1 className="lg:text-4xl md:text-2xl font-extrabold text-center text-blue-600 mb-6">
-                        Signup
-                    </h1>
-                    <h4 className="text-center text-lg font-medium">Create a new account</h4>
-                      <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+            <div className="hero min-h-screen bg-base-200">
+                <div className="hero-content flex-col lg:flex-row-reverse">
+                    <div className="text-center lg:text-left">
+                        <h1 className="text-5xl font-bold">Sign up now!</h1>
+                        <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                    </div>
+                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                        <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Name</span>
@@ -95,16 +91,11 @@ const SignUp = () => {
                                 <input className="btn btn-primary" type="submit" value="Sign Up" />
                             </div>
                         </form>
-                    <p className="text-center mt-4 text-black text-base font-medium">
-                        Already have an account?{" "}
-                        <Link className="text-blue-600 font-semibold text-lg" to="/login">
-                            SignUp
-                        </Link>
-                    </p>
+                        <p><small>Already have an account <Link to="/login">Login</Link></small></p>
+                    </div>
                 </div>
             </div>
-            <ToastContainer />
-        </div>
+        </>
     );
 };
 

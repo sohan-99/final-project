@@ -20,6 +20,7 @@ const Navber = () => {
 
             {
                 user ? <>
+                <span>{user?.displayName}</span>
                     <button onClick={handleLogOut} className="btn btn-active btn-ghost">LogOut</button></> : <>
                     <li><Link to="/login">Login</Link></li>
                 </>
