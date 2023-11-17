@@ -14,6 +14,7 @@ import Order from './pages/Order/Order/Order';
 import Login from './pages/Login/Login';
 import AuthProvider from './Provider/AuthProvider';
 import SignUp from './pages/SignUp/SignUp';
+import PrivateRoute from './Routes/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/order/:category',
-        element: <Order></Order>
+        element:<PrivateRoute><Order></Order></PrivateRoute> 
       },
       {
         path: '/login',
