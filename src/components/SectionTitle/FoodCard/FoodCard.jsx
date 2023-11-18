@@ -1,22 +1,44 @@
-/* eslint-disable react/prop-types */
-import Swal from 'sweetalert2';
-import useAuth from './../../../hooks/useAuth';
-import { useLocation, useNavigate } from 'react-router-dom';
+import Swal from "sweetalert2";
+import useAuth from '../../../hooks/useAuth';
+import { useLocation, useNavigate } from "react-router-dom";
+import useAxiosSecure from '../../../hooks/useAxiosSecure'
+// import useCart from "../../hooks/useCart";
 
 
-
-const FoodCard = ({item}) => {
-    const {name, image, price, recipe}= item;
-    const {user} = useAuth();
+const FoodCard = ({ item }) => {
+    const { name, image, price, recipe, _id } = item;
+    const { user } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
-    // console.log(user);
+    const axiosSecure = useAxiosSecure();
+    // const [, refetch] = useCart();
 
-    const handleAddToCart = () =>{
-        // console.log(food,user.email );
+    const handleAddToCart = () => {
         if (user && user.email) {
             //send cart item to the database
-           
+            const cartItem = {
+                menuId: _id,
+                email: user.email,
+                name,
+                image,
+                price
+            }
+            axiosSecure.post('/carts', cartItem)
+                .then(res => {
+                    console.log(res.data)
+                    if (res.data.insertedId) {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: `${name} added to your cart`,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        // refetch cart to update the cart items count
+                        // refetch();
+                    }
+
+                })
         }
         else {
             Swal.fire({
