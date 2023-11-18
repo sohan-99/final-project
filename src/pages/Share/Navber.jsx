@@ -22,7 +22,7 @@ const Navber = () => {
             <li><Link to="/menu">Our Menu</Link></li>
             <li><Link to="/order/salad">Order Food</Link></li>
             <li>
-                <Link to='/'>
+                <Link to='/dashboard/cart'>
                     <button className="btn">
                     <FaShoppingCart />
                         <div className="badge badge-secondary">+{cart.length}</div>

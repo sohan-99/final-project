@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Swal from "sweetalert2";
 import useAuth from '../../../hooks/useAuth';
 import { useLocation, useNavigate } from "react-router-dom";
