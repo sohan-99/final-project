@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import FoodCard from "../../../components/SectionTitle/FoodCard/FoodCard";
+import FoodCard from '../../../components/SectionTitle/FoodCard'
 
 
 const OrderTabs = ({items}) => {
