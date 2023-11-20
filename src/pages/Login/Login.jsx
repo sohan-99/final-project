@@ -94,7 +94,7 @@ const Login = () => {
                             </div>
                         </form>
                         <p className="px-4 pb-4"><small>New Here? <Link to="/signup">Create an account</Link> </small></p>
-                        <SocialLogin></SocialLogin>
+                        <SocialLogin>Google</SocialLogin>
                     </div>
                 </div>
            
