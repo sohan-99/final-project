@@ -29,6 +29,8 @@ import ManageItems from './pages/Dashboard/ManageItems/ManageItems';
 import UpdateItem from './pages/Dashboard/UpdateItem/UpdateItem';
 import Payment from './pages/Dashboard/Payment/Payment';
 import PaymentHistory from './pages/Dashboard/PaymentHistory/PaymentHistory';
+import AdminHome from './pages/Dashboard/AdminHome/AdminHome';
+import UserHome from './pages/Dashboard/UserHome/UserHome';
 
 const router = createBrowserRouter([
   {
@@ -63,11 +65,15 @@ const router = createBrowserRouter([
     children: [
       // normal user routes
       {
+        path: 'userHome',
+        element: <UserHome></UserHome>
+      },
+      {
         path: 'cart',
         element: <Cart></Cart>
       },
       {
-        path:'PaymentHistory',
+        path: 'PaymentHistory',
         element: <PaymentHistory></PaymentHistory>
       },
       {
@@ -76,10 +82,13 @@ const router = createBrowserRouter([
       },
 
       //  admin routes
-
+      {
+        path: 'adminHome',
+        element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+      },
       {
         path: 'users',
-        element:<AdminRoute> <AllUsers></AllUsers></AdminRoute>
+        element: <AdminRoute> <AllUsers></AllUsers></AdminRoute>
       },
 
       {
@@ -93,7 +102,7 @@ const router = createBrowserRouter([
       {
         path: 'updateItem/:id',
         element: <UpdateItem></UpdateItem>,
-        loader: ({params}) => fetch(`http://localhost:5000/menu/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/menu/${params.id}`)
       }
     ]
   }
